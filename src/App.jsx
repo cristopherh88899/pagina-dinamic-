@@ -23,7 +23,7 @@ function App() {
 
   const cargarClientes = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/clientes');
+      const res = await fetch('https://backend-production-8d91aa48.up.railway.app/api/clientes');
       const data = await res.json();
       setClientes(data);
     } catch (e) {
@@ -34,7 +34,7 @@ function App() {
   const registrarCliente = async (e) => {
     e.preventDefault();
     const hoy = new Date().toISOString().slice(0, 10);
-    const res = await fetch('http://localhost:3000/api/clientes', {
+    const res = await fetch('https://backend-production-8d91aa48.up.railway.app/api/clientes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...formCliente, total: Number(formCliente.total), fecha: hoy })
@@ -51,7 +51,7 @@ function App() {
 
   const eliminarCliente = async (id) => {
     if (!confirm('¿Borrar este cliente?')) return;
-    await fetch(`http://localhost:3000/api/clientes/${id}`, { method: 'DELETE' });
+    await fetch(`https://backend-production-8d91aa48.up.railway.app/api/clientes/${id}`, { method: 'DELETE' });
     cargarClientes();
   };
 
@@ -75,7 +75,7 @@ function App() {
   const cantidadTotal = carrito.reduce((s, p) => s + p.cantidad, 0);
 
   const cargar = async () => {
-    const res = await fetch('http://localhost:3000/api/aceites');
+    const res = await fetch('https://backend-production-8d91aa48.up.railway.app/api/aceites');
     const data = await res.json();
     setAceites(data);
   };
@@ -84,7 +84,7 @@ function App() {
 
   const guardar = async (e) => {
     e.preventDefault();
-    await fetch('http://localhost:3000/api/aceites', {
+    await fetch('https://backend-production-8d91aa48.up.railway.app/api/aceites', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form)
@@ -95,7 +95,7 @@ function App() {
 
   const eliminar = async (id) => {
     if (!confirm('¿Borrar este aceite?')) return;
-    await fetch(`http://localhost:3000/api/aceites/${id}`, { method: 'DELETE' });
+    await fetch(`https://backend-production-8d91aa48.up.railway.app/api/aceites/${id}`, { method: 'DELETE' });
     cargar();
   };
 
